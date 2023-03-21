@@ -1,7 +1,12 @@
 <?php
 
 class estoque{
-    private $cod_produto, $nome_produto, $preco_venda, $preco_compra, $qtd_produto, $data_compra;
+    private $cod_produto;
+    private $nome_produto;
+    private $preco_venda;
+    private $preco_compra;
+    private $qtd_produtos;
+    private $data_compra;
 
     public function getCodigo(){
         return $this->cod_produto;
@@ -12,8 +17,8 @@ class estoque{
     public function getNome(){
         return $this->nome_produto;
     }
-    public function setNome($nome){
-        $this->nome_produto = $nome;
+    public function setNome($nome_produto){
+        $this->nome_produto = $nome_produto;
     }
     public function getPrecoVenda(){
         return $this->preco_venda;
@@ -27,11 +32,11 @@ class estoque{
     public function setPrecoCompra($preco_compra){
         $this->preco_compra = $preco_compra;
     }
-    public function getQtdProduto(){
-        return $this->qtd_produto;
+    public function getQtdProdutos(){
+        return $this->qtd_produtos;
     }
-    public function setQtdProduto($qtd_produto){
-        $this->qtd_produto = $qtd_produto;
+    public function setQtdProdutos($qtd_produtos){
+        $this->qtd_produtos = $qtd_produtos;
     }
     public function getDataCompra(){
         return $this->data_compra;
