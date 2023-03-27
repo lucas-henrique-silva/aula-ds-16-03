@@ -5,12 +5,15 @@
     <link rel="stylesheet" href=".../aula-ds/css/style.css">
     <link rel="shortcut icon" href=".../aula-ds/img/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>
+    <title>Página de cadastro</title>
 </head>
 <body>
     <fieldset>
     <main class="conteudo">
         <form action="estoquecontroller.php" method="post">
+
+        <label for="codproduto">Código do Produto</label>
+        <input type="text" name="cod_produto"><br><br>
 
         <label for="nomeproduto">Nome do Produto</label>
         <input type="text" name="nome_produto" placeholder="Digite o nome do produto..."><br><br>
@@ -30,7 +33,11 @@
 
         <label for="datacompra">Data da Compra</label>
         <input type="date" name="data_compra" placeholder="Digite a data da compra...."><br><br>
-        <input type="submit" placeholder="Cadastrar" name="acao">
+        <input type="submit" placeholder="Cadastrar" name="acao" value="Cadastrar">
+        <input type="submit" placeholder="Atualizar" name="acao" value="Atualizar">
+        <input type="submit" placeholder="Apagar" name="acao" value="Apagar">
+        <input type="submit" placeholder="Consultar" name="acao" value="Consultar">
+
         </form>
     </main>
     </fieldset>

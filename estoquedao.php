@@ -2,9 +2,9 @@
 
 include 'conexao.php';
 
-class estoqueDao{
-    public function cadastrar(estoque $estq){
-        $sql = "insert into estoque (nome_produto, preco_venda, preco_compra, qtd_produto, data_compra) values (?, ?, ?, ?, ?)"; 
+class estoquedao{
+    public function cadastrar(Estoque $estq){
+        $sql = "insert into estoque(nome_produto, preco_venda, preco_compra, qtd_produtos, data_compra) values (?, ?, ?, ?, ?)"; 
         
         $bc = new Conexao(); # processo chamado de "instancia" onde estamos identificando uma classe e identificando variaveis de outros lugares
         $con = $bc->getConexao();
@@ -13,7 +13,7 @@ class estoqueDao{
         $valores->bindvalue(1, $estq->getNome());
         $valores->bindvalue(2, $estq->getPrecoVenda());
         $valores->bindvalue(3, $estq->getPrecoCompra());
-        $valores->bindvalue(4, $estq->getQtdProduto());
+        $valores->bindvalue(4, $estq->getQtdProdutos());
         $valores->bindvalue(5, $estq->getDataCompra());
         
         $resultado = $valores->execute();
@@ -33,24 +33,24 @@ class estoqueDao{
         $valores = $con->prepare($sql);
         $valores->execute();
 
-        if ($valores->rowCont()>0){
+        if ($valores->rowCount()>0){
             $resultado = $valores->fetchAll(\PDO::FETCH_ASSOC);
             return $resultado;
         }
     }
-    public function atualizar(estoque $estq){
-        $sql = "update estoque set nome_produto=?, preco_venda=?, preco_compra=?, qtd_produto=?, data_compra=? where cod_produto=?"; 
+    public function atualizar(Estoque $estq){
+        $sql = "update estoque set nome_produto=?, preco_venda=?, preco_compra=?, qtd_produtos=?, data_compra=? where cod_produto=?"; 
         
         $bc = new Conexao();
         $con = $bc->getConexao();
 
         $valores = $con->prepare($sql);
-        $valores->bindvalue(1, $estq->getCodigo());
-        $valores->bindvalue(2, $estq->getNome());
-        $valores->bindvalue(3, $estq->getPrecoVenda());
-        $valores->bindvalue(4, $estq->getPrecoCompra());
-        $valores->bindvalue(5, $estq->getQtdProduto());
-        $valores->bindvalue(6, $estq->getDataCompra());
+        $valores->bindvalue(1, $estq->getNome());
+        $valores->bindvalue(2, $estq->getPrecoVenda());
+        $valores->bindvalue(3, $estq->getPrecoCompra());
+        $valores->bindvalue(4, $estq->getQtdProdutos());
+        $valores->bindvalue(5, $estq->getDataCompra());
+        $valores->bindvalue(6, $estq->getCodigo());
 
         $resultado = $valores->execute();
 
@@ -60,7 +60,7 @@ class estoqueDao{
             echo "Erro ao atualizar";
         }
     }
-    public function apagar(estoque $estq){
+    public function apagar(Estoque $estq){
         $sql = "delete from estoque where cod_produto=?"; 
         
         $bc = new Conexao();
@@ -72,9 +72,7 @@ class estoqueDao{
         $resultado = $valores->execute();
 
         if($resultado){
-            echo "Atualizado com sucesso!";
-        }else{
-            echo "Erro ao atualizar";
+            echo "Apagado com sucesso!";
         }
     }
 }
